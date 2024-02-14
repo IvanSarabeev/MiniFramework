@@ -1,0 +1,17 @@
+{
+    "name": "ivan.sarabeev/newgame",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jane Doe"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^v5.4.35",
+        "morrislaptop/var-dumper-with-context": "^0.3.2"
+    }
+}

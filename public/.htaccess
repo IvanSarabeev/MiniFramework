@@ -1,0 +1,17 @@
+RewriteEngine On
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^app(?:$|/(.*)) /some-site/map-app/$1 [NC]
+#
+## If the previously rewritten URL does not map to a file (or directory)...
+#RewriteCond %{DOCUMENT_ROOT}/$0 !-f
+#RewriteCond %{DOCUMENT_ROOT}/$0 !-d
+#RewriteRule ^some-site/map-app(?:$|/(.*)) /some-site/map-app/index.html [NC,L]
+#
+#RewriteRule ^ index.php [QSA,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^ index.php [L]
