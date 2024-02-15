@@ -50,7 +50,7 @@ class Router
 //        return $obj->{$method}();
 
         if (is_array($callback)) {
-            $callback[0] = new $callback[0]();
+            $callback[0] = new $callback[0]($this->request);
         }
 
 //        dd($callback);
@@ -80,7 +80,6 @@ class Router
     protected function layoutContent()
     {
         return file_get_contents(Application::$ROOT_DIR . "/views/layouts/main.php");
-
     }
 
 
@@ -95,8 +94,9 @@ class Router
         foreach ($params as $key => $value) {
             $$key = $value;
         }
-//        ob_start();
+
+        ob_start();
         include_once Application::$ROOT_DIR . "/views/$view.php";
-//        return ob_get_clean();
+        return ob_get_clean();
     }
 }

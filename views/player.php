@@ -1,3 +1,57 @@
+<?php
+
+//use \app\controllers\SinglePlayerContr;
+//
+//try {
+//    if (isset($_SESSION['playerGame'])) {
+//        $playerGame = unserialize($_SESSION['playerGame']);
+////        dd($playerGame);exit;
+//    } else {
+//        $playerGame = new SinglePlayerContr();
+//        $_SESSION['playerGame'] = serialize($playerGame);
+//    }
+
+//    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//       if (isset($_POST['cell'])) {
+//           $rowKeys = array_keys($_POST['cell']);
+//           $row = array_shift($rowKeys);
+//
+//           $cellKeys = array_keys($_POST['cell'][$row]);
+//           $col = array_shift($cellKeys);
+//
+//           $playerGame->getPlayerService($row, $col);
+//           $gameBoard = $playerGame->getBoard();
+//       }
+//    }
+
+//    dd($_SERVER);exit;
+//    if (isset($_POST['reset'])) {
+//        unset($_SESSION);
+//
+//        $playerGame->setGameBoard();
+//
+//
+////        header('Location:' . $_SERVER['REQUEST_URI']);
+////        exit();
+//    }
+
+//    if (isset($_POST['switch'])) {
+//        unset($_SESSION);
+//
+//        header('Location' . '/newgame/public/');
+//        exit();
+//    }
+
+//    $gameBoard = $playerGame->getBoard();
+//    dd($gameBoard);exit;
+
+//    $_SESSION['playerGame'] = serialize($playerGame);
+//    dd($_SESSION);
+//} catch(Exception $error) {
+//    echo $error->getMessage();
+//}
+//?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -6,9 +60,9 @@
     <link rel="stylesheet" href="../public/assets/styles.css">
     <title>Tic Tac Toe</title>
 </head>
-<body class="d-flex flex-column-reverse wallpaper">
+<body class="">
     <main>
-        <div class="d-flex flex-column align-items-center justify-content-center mx-auto">
+        <div class="d-flex flex-column align-items-center justify-content-center mt-5 mx-auto">
             <h2 class="fs-1 fw-bold">Tic Tac Toe</h2>
             <aside class="gap-5 d-flex align-items-center justify-content-center my-4 mx-auto">
                 <h3 class="fs-3 fw-semibold">Player vs Player</h3>
@@ -25,13 +79,10 @@
             <form action="" method="post" class="d-block align-content-center mx-auto">
                 <div>
                     <?php
-                    // Създаване на вложен (двумерен) масив
                     for ($i = 0; $i <= 2; $i++) {
-                        // Масива създава колони, който после да вмъкна в data-row-а
                         for ($j = 0; $j <= 2; $j++) {
-                            // Масива създава редове, който после да вмъкна в data-col
                             // value='" . $gameBoard[$i][$j] . "'
-                            echo "<input type='submit' data-row='$i' data-col='$j'  class='box-model' name='cell[$i][$j]'/>";
+                            echo "<input type='submit' data-row='$i' data-col='$j' value='" . $gameBoard[$i][$j] . "'  class='box-model' name='cell[$i][$j]'/>";
                         }
                         echo "<br>";
                     }

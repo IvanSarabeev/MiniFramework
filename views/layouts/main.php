@@ -11,7 +11,7 @@
 
     <title>Main TicTacToe!</title>
 </head>
-<body class="d-flex flex-column-reverse wallpaper">
+<body class="d-flex flex-column wallpaper">
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
