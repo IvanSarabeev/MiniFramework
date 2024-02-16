@@ -2,21 +2,20 @@
 
 namespace app\controllers;
 
-use AllowDynamicProperties;
 use app\core\Controller;
 use app\core\Request;
-use app\services\SinglePlayerService;
+use app\Services\MultiPlayerService;
 
-#[AllowDynamicProperties] class SinglePlayerContr extends Controller
+class MultiPlayerContr extends Controller
 {
-    private SinglePlayerService $singlePlayerService;
+    private MultiPlayerService $multiPlayerService;
 
     public function __construct(private readonly Request $request)
     {
-        $this->singlePlayerService = new SinglePlayerService();
+        $this->multiPlayerService = new MultiPlayerService();
     }
 
-    public function player(): array|false|string
+    public function computer(): false|array|string
     {
         $selectedCell = $this->request->getBody()['cell'] ?? null;
 
@@ -29,7 +28,9 @@ use app\services\SinglePlayerService;
                     $cellKeys = array_keys($_POST['cell'][$row]);
                     $col = array_shift($cellKeys);
 
-                    $this->singlePlayerService->setPlayersMoves($row, $col);
+                    $this->multiPlayerService->getPlayerMove($row, $col);
+                    $this->multiPlayerService->setBotMoves();
+                    $this->multiPlayerService->checkGameResult();
                 }
             }
         } catch (\Exception $exception) {
@@ -37,10 +38,10 @@ use app\services\SinglePlayerService;
         }
 
         $params = [
-            'gameBoard' => $this->singlePlayerService->getBoard(),
+            'gameBoard' => $this->multiPlayerService->getBoard(),
         ];
 
-        return $this->render('player', $params);
+        return $this->render('computer', $params);
     }
 
 }

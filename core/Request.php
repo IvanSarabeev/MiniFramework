@@ -15,26 +15,15 @@ class Request
             return $mainPath;
         }
 
-        //added return, not necessary
         return $path = substr($path, 0, $position);
     }
 
-    public function getMethod()
+    public function getMethod() : string
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
-    public function isGet()
-    {
-        return $this->getMethod() === 'get';
-    }
-
-    public function isPost()
-    {
-        return $this->getMethod() === 'post';
-    }
-
-    public function getBody()
+    public function getBody() : array
     {
         $body = [];
 

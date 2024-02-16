@@ -4,8 +4,8 @@ namespace app\services;
 
 class GameServices
 {
-    public string $player;
-    protected array $board = [];
+    public string $player = "X";
+    public array $board = [];
 
     public function checkGameResult()
     {

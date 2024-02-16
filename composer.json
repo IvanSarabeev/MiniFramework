@@ -12,6 +12,7 @@
     ],
     "require": {
         "symfony/var-dumper": "^v5.4.35",
-        "morrislaptop/var-dumper-with-context": "^0.3.2"
+        "morrislaptop/var-dumper-with-context": "^0.3.2",
+        "twbs/bootstrap": "5.3.2"
     }
 }

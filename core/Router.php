@@ -19,11 +19,11 @@ class Router
     }
 
 
-    public function get($path, $callback)
+    public function get($path, $callback): void
     {
         $this->routes['get'][$path] = $callback;
     }
-    public function post($path, $callback)
+    public function post($path, $callback): void
     {
         $this->routes['post'][$path] = $callback;
     }
@@ -46,25 +46,21 @@ class Router
 //        $object = $callback[0] ?? '';
 //        $obj = new $object();
 //        $method = $callback[1];
-//
 //        return $obj->{$method}();
 
         if (is_array($callback)) {
             $callback[0] = new $callback[0]($this->request);
         }
 
-//        dd($callback);
-
         return call_user_func($callback, $this->request);
     }
 
-    public function renderView($view, $params = [])
+    public function renderView($view, $params = []): array|false|string
     {
         $layoutContent = $this->layoutContent();
         $viewContent = $this->renderOnlyView($view, $params);
 
         return str_replace('{{content}}', $viewContent, $layoutContent);
-//        include_once Application::$ROOT_DIR . "/views/$view.php";
     }
 
     public function renderContent($viewContent)
@@ -77,7 +73,7 @@ class Router
      * Return the layout or throw an error
      * @return false|string
      */
-    protected function layoutContent()
+    protected function layoutContent(): false|string
     {
         return file_get_contents(Application::$ROOT_DIR . "/views/layouts/main.php");
     }
@@ -95,8 +91,8 @@ class Router
             $$key = $value;
         }
 
-        ob_start();
+//        ob_start();
         include_once Application::$ROOT_DIR . "/views/$view.php";
-        return ob_get_clean();
+//        return ob_get_clean();
     }
 }

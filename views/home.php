@@ -1,8 +1,15 @@
-<section class="w-fit h-100 d-flex flex-column align-items-center justify-content-center border border-2 py-3 px-5 rounded rounded-2">
-    <h2 class="fs-2 fw-bold">Chose Game Mode</h2>
-    <div class="d-block gap-3 align-items-center mt-5">
-        <a type="button" class="btn btn-primary" href="/newgame/public/player">Player vs Player</a>
-        <a type="button" class="btn btn-warning" href="/newgame/public/computer">Human vs Terminator</a>
+<head>
+    <link rel="stylesheet" href="../public/assets/styles.css">
+</head>
+<section style="height: 100vh" class="d-flex flex-column align-items-center justify-content-center">
+    <h1 class="main-heading">Chose Game Mode</h1>
+    <div class="row align-items-center justify-content-center mt-5">
+        <div class="col-6">
+            <a type="button" class="button" href="./player">Player vs Player</a>
+        </div>
+        <div class="col-6">
+            <a type="button" class="button" href="./computer">Player vs Terminator</a>
+        </div>
     </div>
 </section>
 
