@@ -20,18 +20,16 @@ class MultiPlayerContr extends Controller
         $selectedCell = $this->request->getBody()['cell'] ?? null;
 
         try {
-            if (isset($_POST['cell'])) {
-                if (is_array($selectedCell)) {
-                    $rowKeys = array_keys($selectedCell);
-                    $row = array_shift($rowKeys);
+            if (is_array($selectedCell)) {
+                $rowKeys = array_keys($selectedCell);
+                $row = array_shift($rowKeys);
 
-                    $cellKeys = array_keys($_POST['cell'][$row]);
-                    $col = array_shift($cellKeys);
+                $cellKeys = array_keys($_POST['cell'][$row]);
+                $col = array_shift($cellKeys);
 
-                    $this->multiPlayerService->getPlayerMove($row, $col);
-                    $this->multiPlayerService->setBotMoves();
-                    $this->multiPlayerService->checkGameResult();
-                }
+                $this->multiPlayerService->getPlayerMove($row, $col);
+                $this->multiPlayerService->setBotMoves();
+                $this->multiPlayerService->checkGameResult();
             }
         } catch (\Exception $exception) {
             throw new \Error($exception);

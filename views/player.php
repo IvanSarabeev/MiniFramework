@@ -15,7 +15,7 @@ $gameResult->checkGameResult();
     <link rel="stylesheet" href="../public/assets/styles.css">
     <title>Tic Tac Toe</title>
 </head>
-<body>
+<body style="color:black">
 <main>
     <div class="d-flex flex-column align-items-center justify-content-center mt-5 mx-auto">
         <h2 class="fs-1 fw-bold">Tic Tac Toe</h2>
@@ -29,8 +29,14 @@ $gameResult->checkGameResult();
                         <strong class='pl-2 fs-3 d-flex align-items-center justify-content-center'>{$gameResult->checkGameResult()}</strong>
                     </h2>";
             } else {
-                echo "Game is running";
+                echo "<p class='text-center fs-4 fw-medium'>The game is running</p>";
             }
+        ?>
+
+        <?php
+//            if (!isset($_SESSION['renderWinner'])) {
+//                return $_SESSION['renderWinner'];
+//            }
         ?>
 
         <form action="" method="post" class="d-block align-content-center mx-auto">
@@ -38,7 +44,6 @@ $gameResult->checkGameResult();
                 <?php
                 for ($i = 0; $i <= 2; $i++) {
                     for ($j = 0; $j <= 2; $j++) {
-                        // value='" . $gameBoard[$i][$j] . "'
                         echo "<input type='submit' data-row='$i' data-col='$j' value='" . $gameBoard[$i][$j] . "'  class='box-model' name='cell[$i][$j]'/>";
                     }
                     echo "<br>";

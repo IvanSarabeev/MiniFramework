@@ -36,6 +36,8 @@ class Router
 
         if ($callback === false) {
             $this->response->setStatusCode(404);
+
+            // TODO: call the controller then the renderView method
             return $this->renderView("_404");
         }
 
@@ -55,17 +57,14 @@ class Router
         return call_user_func($callback, $this->request);
     }
 
+    /* TODO: merge the following methods: renderView, layoutContent and renderOnlyView
+        to a core/Controller, because the controller should be responsible for the rendering not the router
+    */
     public function renderView($view, $params = []): array|false|string
     {
         $layoutContent = $this->layoutContent();
         $viewContent = $this->renderOnlyView($view, $params);
 
-        return str_replace('{{content}}', $viewContent, $layoutContent);
-    }
-
-    public function renderContent($viewContent)
-    {
-        $layoutContent = $this->layoutContent();
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
@@ -82,17 +81,14 @@ class Router
     /**
      * Return dynamically the needed view
      * @param $view
-     * @return false|string
      */
-    protected function renderOnlyView($view, $params)
+    protected function renderOnlyView($view, $params): void
     {
         // loop over the $params, $$key evaluates as string name to a corresponding value
         foreach ($params as $key => $value) {
             $$key = $value;
         }
 
-//        ob_start();
         include_once Application::$ROOT_DIR . "/views/$view.php";
-//        return ob_get_clean();
     }
 }

@@ -60,5 +60,9 @@ class MultiPlayerService extends GameServices
         return $this->board;
     }
 
+    public function resetBot(): void
+    {
+        unset($_SESSION['gameBot']);
+    }
 
 }

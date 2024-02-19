@@ -21,16 +21,19 @@ use app\services\SinglePlayerService;
         $selectedCell = $this->request->getBody()['cell'] ?? null;
 
         try {
-            if (isset($_POST['cell'])) {
-                if (is_array($selectedCell)) {
-                    $rowKeys = array_keys($selectedCell);
-                    $row = array_shift($rowKeys);
+            if (is_array($selectedCell)) {
+                $rowKeys = array_keys($selectedCell);
+                $row = array_shift($rowKeys);
 
-                    $cellKeys = array_keys($_POST['cell'][$row]);
-                    $col = array_shift($cellKeys);
+                $cellKeys = array_keys($_POST['cell'][$row]);
+                $col = array_shift($cellKeys);
 
-                    $this->singlePlayerService->setPlayersMoves($row, $col);
-                }
+                $this->singlePlayerService->setPlayersMoves($row, $col);
+                $this->singlePlayerService->checkGameResult();
+
+                // TODO: figure out new way to render content
+//                $this->singlePlayerService->renderWinner();
+//                $_SESSION['renderWinner'] = $this->singlePlayerService->renderWinner();
             }
         } catch (\Exception $exception) {
             throw new \Error($exception);

@@ -28,7 +28,7 @@ $gameResult->checkGameResult();
                             <strong class='pl-2 fs-3 d-flex align-items-center justify-content-center'>{$gameResult->checkGameResult()}</strong>
                         </h2>";
                 } else {
-                    echo "Game is running";
+                    echo "<p class='text-center fs-4 fw-medium'>The game is running</p>";
                 }
             ?>
 
@@ -46,7 +46,7 @@ $gameResult->checkGameResult();
 
                 <div class="row align-items-center justify-content-center my-3 mx-auto">
                     <div class="col">
-                        <a href="./reset" target="_parent" type='submit' id='reset' class='btn btn-info'>Exit Game</a>
+                        <a href="./reset" target="_parent" type='submit' id='reset-bot' class='btn btn-info'>Exit Game</a>
                     </div>
                     <div class="col">
                         <a class="btn btn-warning" target="_parent" id="switch" href="./player">Switch Mode</a>

@@ -17,5 +17,6 @@ $app->router->post('/player', [SinglePlayerContr::class, 'player']);
 $app->router->get('/computer', [MultiPlayerContr::class, 'computer']);
 $app->router->post('/computer', [MultiPlayerContr::class, 'computer']);
 $app->router->get('/reset', [HomeController::class, 'reset']);
+$app->router->get('/reset', [HomeController::class, 'resetBot']);
 
 $app->run();

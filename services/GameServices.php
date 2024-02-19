@@ -39,6 +39,7 @@ class GameServices
             && $this->board[1][1] === $this->board[2][0]) {
             return $this->board[0][2];
         }
+
     }
 
 }
