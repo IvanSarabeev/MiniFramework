@@ -1,11 +1,3 @@
-<?php
-
-use app\services\SinglePlayerService;
-
-$gameResult = new SinglePlayerService();
-$gameResult->checkGameResult();
-
-?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -22,16 +14,6 @@ $gameResult->checkGameResult();
                 <h3 class="fs-3 fw-semibold">Player vs Terminator</h3>
             </aside>
 
-            <?php
-                if ($gameResult->checkGameResult()) {
-                    echo "<h2 class='d-flex align-items-center justify-content-center mb-3'>The winner is
-                            <strong class='pl-2 fs-3 d-flex align-items-center justify-content-center'>{$gameResult->checkGameResult()}</strong>
-                        </h2>";
-                } else {
-                    echo "<p class='text-center fs-4 fw-medium'>The game is running</p>";
-                }
-            ?>
-
             <form action="" method="post" class="d-block align-content-center mx-auto">
                 <div>
                     <?php
@@ -46,7 +28,7 @@ $gameResult->checkGameResult();
 
                 <div class="row align-items-center justify-content-center my-3 mx-auto">
                     <div class="col">
-                        <a href="./reset" target="_parent" type='submit' id='reset-bot' class='btn btn-info'>Exit Game</a>
+                        <a href="./reset-bot" target="_parent" type='submit' id='reset-bot' class='btn btn-info'>Exit Game</a>
                     </div>
                     <div class="col">
                         <a class="btn btn-warning" target="_parent" id="switch" href="./player">Switch Mode</a>

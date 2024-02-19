@@ -1,12 +1,3 @@
-<?php
-
-use app\services\SinglePlayerService;
-
-$gameResult = new SinglePlayerService();
-$gameResult->checkGameResult();
-
-?>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -15,29 +6,13 @@ $gameResult->checkGameResult();
     <link rel="stylesheet" href="../public/assets/styles.css">
     <title>Tic Tac Toe</title>
 </head>
-<body style="color:black">
+<body>
 <main>
     <div class="d-flex flex-column align-items-center justify-content-center mt-5 mx-auto">
         <h2 class="fs-1 fw-bold">Tic Tac Toe</h2>
         <aside class="gap-5 d-flex align-items-center justify-content-center my-5 mx-auto">
             <h3 class="fs-3 fw-semibold">Player vs Player</h3>
         </aside>
-
-        <?php
-            if ($gameResult->checkGameResult()) {
-                echo "<h2 class='d-flex align-items-center justify-content-center mb-3'>The winner is
-                        <strong class='pl-2 fs-3 d-flex align-items-center justify-content-center'>{$gameResult->checkGameResult()}</strong>
-                    </h2>";
-            } else {
-                echo "<p class='text-center fs-4 fw-medium'>The game is running</p>";
-            }
-        ?>
-
-        <?php
-//            if (!isset($_SESSION['renderWinner'])) {
-//                return $_SESSION['renderWinner'];
-//            }
-        ?>
 
         <form action="" method="post" class="d-block align-content-center mx-auto">
             <div>

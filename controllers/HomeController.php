@@ -31,10 +31,10 @@ class HomeController extends Controller
         exit;
     }
 
-//    #[NoReturn] public function resetBot(): void
-//    {
-//        $this->multiPlayerService->resetBot();
-//        header('Location: ./', true, 301);
-//        exit;
-//    }
+    #[NoReturn] public function resetBot(): void
+    {
+        $this->multiPlayerService->resetBot();
+        header('Location: ./', true, 301);
+        exit;
+    }
 }

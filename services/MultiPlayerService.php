@@ -42,15 +42,21 @@ class MultiPlayerService extends GameServices
 
 
         if (!empty($emptyCells)) {
-            $randIndex = array_rand($emptyCells);
+
+            $randIndex = array_rand((array)$emptyCells);
 
             $randRow = $emptyCells[$randIndex];
+            if (isset($_POST['row'])) {
+                if( isset($_POST['col'])) {
+                    $this->board[$randRow['row']][$randRow['col']] = $this->player;
+                }
+            }
 
-            $this->board[$randRow['row']][$randRow['col']] = $this->player;
-            $this->player = "X" ? "O" : "X";
+            $this->player = $this->player === "X" ? "O" : "X";
         }
 
         $this->checkGameResult();
+        $this->renderWinner();
 
         $_SESSION['gameBot'] = serialize($this);
     }
@@ -63,6 +69,17 @@ class MultiPlayerService extends GameServices
     public function resetBot(): void
     {
         unset($_SESSION['gameBot']);
+    }
+
+    public function renderWinner(): void
+    {
+        if ($this->checkGameResult()) {
+            echo "<h2 class='d-flex align-items-center justify-content-center mb-3'>The winner is
+                        <strong class='pl-2 fs-3 d-flex align-items-center justify-content-center'>{$this->checkGameResult()}</strong>
+                    </h2>";
+        } else {
+            echo "<p class='text-center fs-4 fw-medium'>The game is still running</p>";
+        }
     }
 
 }

@@ -26,10 +26,10 @@ class SinglePlayerService extends GameServices
         }
 
         $this->checkGameResult();
+        $this->renderWinner();
 
         $_SESSION['gameBoard'] = serialize($this);
     }
-
 
     public function getBoard(): array
     {
@@ -48,7 +48,7 @@ class SinglePlayerService extends GameServices
                         <strong class='pl-2 fs-3 d-flex align-items-center justify-content-center'>{$this->checkGameResult()}</strong>
                     </h2>";
         } else {
-            echo "<p class='text-center fs-4 fw-medium'>The game is running</p>";
+            echo "<p class='text-center fs-4 fw-medium'>The game is still running</p>";
         }
     }
 
