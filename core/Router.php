@@ -7,6 +7,7 @@ class Router
 {
     public Request $request;
     public Response $response;
+    public Controller $controller;
     protected array $routes = [];
 
     /**
@@ -38,11 +39,11 @@ class Router
             $this->response->setStatusCode(404);
 
             // TODO: call the controller then the renderView method
-            return $this->renderView("_404");
+            return $this->controller->renderView("_404");
         }
 
         if (is_string($callback)) {
-            return $this->renderView($callback);
+            return $this->controller->renderView($callback);
         }
 
 //        $object = $callback[0] ?? '';
@@ -60,35 +61,4 @@ class Router
     /* TODO: merge the following methods: renderView, layoutContent and renderOnlyView
         to a core/Controller, because the controller should be responsible for the rendering not the router
     */
-    public function renderView($view, $params = []): array|false|string
-    {
-        $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view, $params);
-
-        return str_replace('{{content}}', $viewContent, $layoutContent);
-    }
-
-    /**
-     * Return the layout or throw an error
-     * @return false|string
-     */
-    protected function layoutContent(): false|string
-    {
-        return file_get_contents(Application::$ROOT_DIR . "/views/layouts/main.php");
-    }
-
-
-    /**
-     * Return dynamically the needed view
-     * @param $view
-     */
-    protected function renderOnlyView($view, $params): void
-    {
-        // loop over the $params, $$key evaluates as string name to a corresponding value
-        foreach ($params as $key => $value) {
-            $$key = $value;
-        }
-
-        include_once Application::$ROOT_DIR . "/views/$view.php";
-    }
 }

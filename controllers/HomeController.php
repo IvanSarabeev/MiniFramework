@@ -21,7 +21,7 @@ class HomeController extends Controller
 
     public function home(): array|false|string
     {
-        return Application::$app->router->renderView('home');
+        return Application::$app->controller->renderView('home');
     }
 
     #[NoReturn] public function reset(): void

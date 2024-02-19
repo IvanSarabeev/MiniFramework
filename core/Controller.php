@@ -6,9 +6,42 @@ use app\controllers\HomeController;
 class Controller
 {
 
+    public function renderView($view, $params = []): array|false|string
+    {
+        $layoutContent = $this->layoutContent();
+        $viewContent = $this->renderOnlyView($view, $params);
+
+        return str_replace('{{content}}', $viewContent, $layoutContent);
+    }
+
+    /**
+     * Return the layout or throw an error
+     * @return false|string
+     */
+    protected function layoutContent(): false|string
+    {
+        return file_get_contents(Application::$ROOT_DIR . "/views/layouts/main.php");
+    }
+
+
+    /**
+     * Return dynamically the needed view
+     * @param $view
+     */
+    protected function renderOnlyView($view, $params): void
+    {
+        // loop over the $params, $$key evaluates as string name to a corresponding value
+        foreach ($params as $key => $value) {
+            $$key = $value;
+        }
+
+        include_once Application::$ROOT_DIR . "/views/$view.php";
+    }
+
     public function render($view, $params = []): false|array|string
     {
-        return Application::$app->router->renderView($view, $params);
+        return Application::$app->controller->renderView($view, $params);
     }
+
 
 }
