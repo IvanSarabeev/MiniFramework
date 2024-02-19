@@ -19,11 +19,11 @@ class Router
         $this->response = $response;
     }
 
-
     public function get($path, $callback): void
     {
         $this->routes['get'][$path] = $callback;
     }
+
     public function post($path, $callback): void
     {
         $this->routes['post'][$path] = $callback;
@@ -38,18 +38,12 @@ class Router
         if ($callback === false) {
             $this->response->setStatusCode(404);
 
-            // TODO: call the controller then the renderView method
             return $this->controller->renderView("_404");
         }
 
         if (is_string($callback)) {
             return $this->controller->renderView($callback);
         }
-
-//        $object = $callback[0] ?? '';
-//        $obj = new $object();
-//        $method = $callback[1];
-//        return $obj->{$method}();
 
         if (is_array($callback)) {
             $callback[0] = new $callback[0]($this->request);
@@ -58,7 +52,4 @@ class Router
         return call_user_func($callback, $this->request);
     }
 
-    /* TODO: merge the following methods: renderView, layoutContent and renderOnlyView
-        to a core/Controller, because the controller should be responsible for the rendering not the router
-    */
 }
