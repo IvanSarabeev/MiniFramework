@@ -30,10 +30,6 @@ use app\services\SinglePlayerService;
 
                 $this->singlePlayerService->setPlayersMoves($row, $col);
                 $this->singlePlayerService->checkGameResult();
-
-                // TODO: figure out new way to render content
-//                $this->singlePlayerService->renderWinner();
-//                $_SESSION['renderWinner'] = $this->singlePlayerService->renderWinner();
             }
         } catch (\Exception $exception) {
             throw new \Error($exception);

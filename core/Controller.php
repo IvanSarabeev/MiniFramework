@@ -5,8 +5,6 @@ use app\controllers\HomeController;
 
 class Controller
 {
-
-    // TODO: use the getInstance method from the Singleton class
     /**
      * @param $view
      * @param array $params
@@ -26,10 +24,8 @@ class Controller
      */
     protected function layoutContent(): false|string
     {
-        return file_get_contents(Application::$ROOT_DIR . "/views/layouts/main.php");
-//          return file_get_contents(Singleton::$ROOT_DIR. '/views/layouts/main.php');
+        return file_get_contents(Singleton::$ROOT_DIR . "/views/layouts/main.php");
     }
-
 
     /**
      * Return dynamically the needed view
@@ -42,16 +38,14 @@ class Controller
             $$key = $value;
         }
 
-        include_once Application::$ROOT_DIR . "/views/$view.php";
-//        include_once Singleton::$ROOT_DIR . "/views/$view.php";
+        require_once Singleton::$ROOT_DIR . "/views/$view.php";
 
     }
 
     // TODO: change the return statement
     public function render($view, $params = []): false|array|string
     {
-        return Application::$app->controller->renderView($view, $params);
-//        return Singleton::getInstance()->controller->renderView($view, $params);
+        return Singleton::$app->controller->renderView($view, $params);
     }
 
 
